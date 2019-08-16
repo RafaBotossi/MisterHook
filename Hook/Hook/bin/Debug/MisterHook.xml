@@ -1,0 +1,174 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+MisterHook
+</name>
+</assembly>
+<members>
+<member name="T:MisterHook.My.Resources.Resources">
+<summary>
+  Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
+</summary>
+</member>
+<member name="P:MisterHook.My.Resources.Resources.ResourceManager">
+<summary>
+  Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
+</summary>
+</member>
+<member name="P:MisterHook.My.Resources.Resources.Culture">
+<summary>
+  Substitui a propriedade CurrentUICulture do thread atual para todas as
+  pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
+</summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.#ctor(System.IntPtr,MisterHook.Playback.PlaybackActions@)">
+ <summary>
+ Construtor da Classe de gravação de Teclado
+ </summary>
+ <param name="hinstance">É necessário passar o handle do programa que está realizando a gravação, senão não funciona.</param>
+ <param name="oPlayback">Se quiser realizar o playback depois, é necessário passar este objeto</param>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.StartRecording">
+ <summary>
+ Realiza a Gravação de Mouse
+ </summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.StopRecording">
+ <summary>
+ Pára a gravação
+ </summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.Finalize">
+ <summary>
+ Pára a gravação
+ </summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.HookMouse(System.Int32,System.IntPtr,System.IntPtr)">
+ <summary>
+ Função que grava a ação do Mouse
+ </summary>
+ <param name="nCode">Ação</param>
+ <param name="wParam">Código da ação do mouse</param>
+ <param name="lParam">Estrutura da ação do mouse</param>
+ <returns></returns>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.RaiseEvents(System.IntPtr)">
+ <summary>
+ Chama eventos para Log
+ </summary>
+ <param name="wParam">Ação do Mouse</param>
+</member>
+<member name="M:MisterHook.MisterHook.Record.MouseRecorder.LogAction(MisterHook.MisterHook.Models.MouseHookModel)">
+ <summary>
+ Realiza Log da ação para o Playback
+ </summary>
+ <param name="MouseHookModel">Classe da ação realizada</param>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.#ctor(System.IntPtr,MisterHook.Playback.PlaybackActions@)">
+ <summary>
+ Construtor da Classe de gravação de Teclado
+ </summary>
+ <param name="hinstance">É necessário passar o handle do programa que está realizando a gravação, senão não funciona.</param>
+ <param name="oPlayback">Se quiser realizar o playback depois, é necessário passar este objeto</param>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.StartRecording">
+ <summary>
+ Realiza a gravação de teclas
+ </summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.StopRecording">
+ <summary>
+ Pára a gravação
+ </summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.Finalize">
+ <summary>
+ Pára a gravação
+ </summary>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.HookKey(System.Int32,System.IntPtr,System.IntPtr)">
+ <summary>
+ Função que grava a tecla
+ </summary>
+ <param name="nCode">Ação</param>
+ <param name="wParam">Código da Tecla</param>
+ <param name="lParam">Estrutura de tecla pressionada</param>
+ <returns></returns>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.RaiseEvents(System.IntPtr,MisterHook.MisterHook.Structs.KeyboardHookStruct)">
+ <summary>
+ Chama eventos para log
+ </summary>
+ <param name="wParam">Tecla Pressionada</param>
+ <param name="KeyboardStruct">Estrutura de Tecla para passar pros eventos</param>
+</member>
+<member name="M:MisterHook.MisterHook.Record.KeyboardRecorder.LogAction(MisterHook.MisterHook.Models.KeyboardHookModel)">
+ <summary>
+ Realiza Log da ação para o Playback
+ </summary>
+ <param name="KeyboardHookModel">Classe da ação realizada</param>
+</member>
+<member name="T:MisterHook.Playback.PlaybackActions">
+ <summary>
+ Classe usada para realizar playback da gravação realizada
+ </summary>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.#ctor(System.IntPtr,System.String,System.String)">
+ <summary>
+ Construtor da classe de Playback
+ </summary>
+ <param name="hinstance">É necessário passar o handle da aplicação que chamou a gravação/playback, se não o hook não funciona</param>
+ <param name="PathToSave">Qual o caminho do script para rodar o playback</param>
+ <param name="FileName">Qual o nome do arquivo do script para rodar o playback</param>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.Playback(System.String)">
+ <summary>
+ Realiza o Playback gravado anteriormente
+ </summary>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.StopPlayback">
+ <summary>
+ Pára o playback
+ </summary>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.Sleep(System.Object,System.DateTime@)">
+ <summary>
+ Entre as ações é necessário esperar o tempo que o usuário esperou para realizar a ação. Utiliza os timestamps para isso
+ </summary>
+ <param name="oStruct">Estrutura</param>
+ <param name="lastTimestamp">Último Timestamp para cálculo do tempo entre ações</param>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.LogAction(System.Object)">
+ <summary>
+ Realiza o Log da ação nos objetos de gravação de Teclado e Mouse
+ </summary>
+ <param name="KeyStruct">Pode ser KeyboardHookModel ou MouseHookModel</param>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.SaveRecordToFile(System.String,System.String)">
+ <summary>
+ Salva o que foi gravado em arquivo
+ </summary>
+ <param name="PathToSave">Caminho para salvar o arquivo de script</param>
+ <param name="Filename">Nome do arquivo de script para salvar</param>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.KeyboardRecorder_KeyDown(System.Windows.Forms.Keys)">
+ <summary>
+ Checa se o usuário apertou a tecla Pause para parar o Playback
+ </summary>
+ <param name="Key">Tecla Pressionada</param>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.KeyboardPlayback(System.Object@)">
+ <summary>
+ Realiza o Playback do Teclado
+ </summary>
+ <param name="oStruct">Estrutura do tipo KeyboardHookModel</param>
+</member>
+<member name="M:MisterHook.Playback.PlaybackActions.MousePlayback(System.Object@)">
+ <summary>
+ Realiza o Playback do Mouse
+ </summary>
+ <param name="oStruct">Estrutura do tipo MouseHookModel</param>
+</member>
+</members>
+</doc>
